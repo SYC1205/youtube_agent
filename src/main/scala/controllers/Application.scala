@@ -4,7 +4,15 @@ import java.util.UUID
 
 import play.api._
 import play.api.mvc._
-import play.api.libs.json.{JsArray, Json}
+import play.api.libs.json._
+
+import org.json4s.jackson.Serialization
+import org.json4s.JsonDSL._
+import org.json4s.native.JsonMethods._
+import org.json4s._
+
+
+import sample.service._
 
 class Application extends Controller {
 
@@ -40,6 +48,19 @@ class Application extends Controller {
       JSON_KEY_TEXT -> text)
     commentsJson = commentsJson :+ newComment
     Ok(newComment)
+  }
+  
+  def getYoutube(s3ObjectKeyOrYoutubeId: String) = Action {
+    implicit val formats = DefaultFormats
+    
+    val getYoutube = DocumentService.getYoutubeInfo(s3ObjectKeyOrYoutubeId)
+    
+    Ok(getYoutube)
+  }
+  
+  def getS3PreSignedUrl = Action {
+    var getS3PreSignedUrl = DocumentService.getS3PreSignedUrl()
+     Ok(getS3PreSignedUrl)
   }
 
 }

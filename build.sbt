@@ -17,6 +17,8 @@ libraryDependencies ++= Seq(
 
 libraryDependencies += "org.json4s" % "json4s-native_2.11" % "3.3.0"
 
+libraryDependencies += "org.json4s" % "json4s-jackson_2.11" % "3.3.0"
+
 libraryDependencies ++= Seq(
   cache,
   ws,

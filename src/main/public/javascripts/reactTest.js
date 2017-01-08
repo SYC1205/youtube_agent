@@ -25,6 +25,7 @@ var CommentBox = React.createClass({
         <h1>Comments</h1>
         <CommentList data={this.state.data} />
         <CommentForm />
+        <YoutubeIframe name="youtube" />
       </div>
     );
   }
@@ -102,6 +103,30 @@ var Comment = React.createClass({
   }
 });
 
+var Hello = React.createClass({
+    render: function() {
+        return(
+    		<div>
+    			<img src={'https://i.ytimg.com/vi/5vpNqrPI5Zo/sddefault.jpg'} alt="boohoo" className="img-responsive"/>
+    			<span>Hello {this.props.name}</span>
+    		</div>
+        );
+    }
+});
+
+var YoutubeIframe = React.createClass({
+    render: function() {
+        return(
+			<iframe id="player" type="text/html" width="640" height="390"
+				  src="https://www.youtube.com/embed/5vpNqrPI5Zo" frameborder="0">
+			</iframe>
+        );
+    }
+});
+
 React.render(
   <CommentBox url="http://localhost:9000/comments" pollInterval={2000} />,
-  document.getElementById('content'));
+  document.getElementById('content')
+  )
+  
+  
